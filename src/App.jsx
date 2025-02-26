@@ -27,7 +27,7 @@ const ScraperApp = () => {
     setAbortController(controller);
 
     try {
-      const response = await fetch('http://localhost:3001/scrape', {
+      const response = await fetch('http://localhost:5000/scrape', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ const ScraperApp = () => {
     if (sessionId) {
       try {
         // Notify backend to stop scraping
-        const response = await fetch(`http://localhost:3001/stop-scraping/${sessionId}`, {
+        const response = await fetch(`http://localhost:5000/stop-scraping/${sessionId}`, {
           method: 'POST',
         });
         
@@ -122,7 +122,7 @@ const ScraperApp = () => {
   const handleDownload = async () => {
     try {
       // Create Excel file from current results
-      const response = await fetch('http://localhost:3001/create-excel', {
+      const response = await fetch('http://localhost:5000/create-excel', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -138,7 +138,7 @@ const ScraperApp = () => {
       const { filename } = data;
 
       // Download the created file
-      const downloadResponse = await axios.get(`http://localhost:3001/download/${filename}`, {
+      const downloadResponse = await axios.get(`http://localhost:5000/download/${filename}`, {
         responseType: 'blob'
       });
       
